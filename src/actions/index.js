@@ -7,6 +7,12 @@ export function fetchWeather (city) {
   const url = `${ROOT_URL}&q=${city},us`;
   const request = axios.get(url);
 
+  console.log('Request:', request);
+//redux promise stops the action if payload is promise
+//when request finishes, dispatches a new action of the same type
+// but with a payload of the resolved request
+// it un wraps the promise for us. makes it so we don't have to
+//deal with promises in reducers in a switch statement
   return {
     type: FETCH_WEATHER,
     payload: request
